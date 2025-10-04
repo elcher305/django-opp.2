@@ -1,7 +1,17 @@
+{% load static %} {% load bootstrap4 %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% bootstrap_css %} {% bootstrap_javascript jquery='slim' %}
+    <title>{% block title %} Главная {% endblock %}</title>
+</head>
+<body style="background-color: 	#FFFFFF">
 <div class="container-fluid">
     <div  style="" class="d-flex flex-column flex-md-row p-3 px-md-4 mb-3 border-bottom box-shadow">
         <h1 class="mr-md-auto p-2">Design.pro</h1>
-         {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
         <form class="p-2 text-dark" action="{% url 'catalog:profile' %}" method="post">
             {% csrf_token %}
             <button class="dropdown-item" type="submit">Профиль</button>
@@ -23,8 +33,11 @@
     </div>
     <div class="row">
         <nav class="col-md-auto nav flex-column" style="margin: 15px;">
-             <a style="color: black;" class="nav-link root" href="{% url 'catalog:index' %}">Главная</a>
+            <a style="color: black;" class="nav-link root" href="{% url 'catalog:index' %}">Главная</a>
         </nav>
         <div class="container"> {% bootstrap_messages %} {% block content %} {% endblock %}</div>
     </div>
+</div>
+</body>
+</html>
 

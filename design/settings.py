@@ -35,9 +35,9 @@ EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'malenkoer@mail.ru'
+EMAIL_HOST_USER = 'elvira.chernova.05@mail.ru'
 EMAIL_HOST_PASSWORD = 'zFZNRLhwpDGbchWqY6BH'
-DEFAULT_FROM_EMAIL = 'malenkoer@mail.ru'
+DEFAULT_FROM_EMAIL = 'elvira.chernova.05@mail.ru'
 
 
 ROOT_URLCONF = 'design.urls'

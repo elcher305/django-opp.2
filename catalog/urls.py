@@ -1,3 +1,5 @@
+from django.urls import path
+from . import views
 from .views import BBLoginView
 from .views import profile
 from .views import BBLogoutView

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LogoutView
@@ -7,8 +7,9 @@ from .models import AdvUser
 from django.views.generic import CreateView
 from .forms import RegisterUserForm
 from django.urls import reverse_lazy
+from django.core.mail import send_mail
 from django.views.generic.base import TemplateView
-
+from django.contrib.auth import login
 
 def index(request):
     return render(request, 'index.html')
@@ -32,6 +33,25 @@ class RegisterUserView(CreateView):
     template_name = 'registration/register_user.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('catalog:register_done')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = self.object
+        tariff = form.cleaned_data.get('tariff')
+
+        subject = 'Регистрация на сайте'
+        message = f'Спасибо за регистрацию! '
+        from_email = 'malenkoer@mail.ru'
+        recipient_list = [user.email]
+        send_mail(subject, message, from_email, recipient_list)
+
+        try:
+            send_mail(subject, message, from_email, recipient_list)
+        except Exception as e:
+            print(f'Email sending failed: {e}')
+
+        login(self.request, user)
+        return response
 
 class RegisterDoneView(TemplateView):
     template_name = 'registration/register_done.html'

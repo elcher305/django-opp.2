@@ -9,7 +9,7 @@ class ChangeUserInfoForm(forms.ModelForm):
 
    class Meta:
        model = AdvUser
-       fields = ('username', 'email', 'fio')
+       fields = ('username', 'email', 'first_name', 'patronymic', 'last_name')
 
 class RegisterUserForm(forms.ModelForm):
     email = forms.EmailField(required=True, label='Адрес электронной почты', validators=[
